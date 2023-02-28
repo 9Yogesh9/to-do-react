@@ -41,8 +41,8 @@ Run todo list with npm
 
 ### Screenshots
 
-Light Theme:
+Dark Theme:
 ![App Screenshot](https://raw.githubusercontent.com/9Yogesh9/to-do-react/main/public/Screenshot%20dark.png)
 
-Dark Theme:
+Light Theme:
 ![App Screenshot](https://raw.githubusercontent.com/9Yogesh9/to-do-react/main/public/Screenshot%20light.png)
