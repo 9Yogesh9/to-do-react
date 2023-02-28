@@ -16,7 +16,7 @@ const Header = ({ theme, setTheme }) => {
     const icon_class = 'my-3 h-8 w-8';
 
     return (
-        <div className='px-3 py-1 flex justify-around content-center w-full h-2/6 '>
+        <div className='px-3 py-1 flex justify-around content-center w-full h-1/6 '>
             <div className='cursor-pointer'>
                 <BsInfoCircleFill className={icon_class} />
             </div>
