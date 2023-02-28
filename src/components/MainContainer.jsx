@@ -44,14 +44,21 @@ const MainContainer = () => {
 
   // Delete an item from list and update accordingly
   const deleteItem = (item) => {
+    setLoading(true);
+    fetch('https://jsonplaceholder.typicode.com/posts/1', {
+      method: 'DELETE',
+    })
+      .then(() => {
+        const updatedList = todoList.filter((element => {
+          if (item.id !== element.id) {
+            return true;
+          }
+        }));
 
-    const updatedList = todoList.filter((element => {
-      if (item.id !== element.id) {
-        return true;
-      }
-    }));
+        setTodoList(updatedList);
+        setLoading(false);
+      });
 
-    setTodoList(updatedList);
   }
 
   // Add new todo item in an array
@@ -112,7 +119,7 @@ const MainContainer = () => {
           setLoading(false);
           setToggleBtn(!toggleBtn);
         });
-    }else{
+    } else {
       setNewToDo('');
       setUpdateItem('');
       setToggleBtn(!toggleBtn);
