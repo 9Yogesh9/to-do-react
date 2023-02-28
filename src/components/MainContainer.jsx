@@ -84,33 +84,39 @@ const MainContainer = () => {
 
   // Edit the title of todo item 
   const editItem = () => {
-    setLoading(true);
-    fetch(`https://jsonplaceholder.typicode.com/posts/${updateItem.id}`, {
-      method: 'PUT',
-      body: JSON.stringify({
-        title: newTodo,
-        completed: updateItem.completed
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        const updatedList = todoList.filter((element => {
-          if (json.id === element.id) {
-            element.title = json.title;
-            element.completed = json.completed;
-          }
-          return true;
-        }));
+    if (newTodo) {
+      setLoading(true);
+      fetch(`https://jsonplaceholder.typicode.com/posts/${updateItem.id}`, {
+        method: 'PUT',
+        body: JSON.stringify({
+          title: newTodo,
+          completed: updateItem.completed
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          const updatedList = todoList.filter((element => {
+            if (json.id === element.id) {
+              element.title = json.title;
+              element.completed = json.completed;
+            }
+            return true;
+          }));
 
-        setTodoList(updatedList);
-        setNewToDo('');
-        setUpdateItem('');
-        setLoading(false);
-        setToggleBtn(!toggleBtn);
-      });
+          setTodoList(updatedList);
+          setNewToDo('');
+          setUpdateItem('');
+          setLoading(false);
+          setToggleBtn(!toggleBtn);
+        });
+    }else{
+      setNewToDo('');
+      setUpdateItem('');
+      setToggleBtn(!toggleBtn);
+    }
   }
 
   return (
