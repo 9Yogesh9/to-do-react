@@ -56,28 +56,30 @@ const MainContainer = () => {
 
   // Add new todo item in an array
   const addItemToDo = () => {
-    setLoading(true);
-    fetch('https://jsonplaceholder.typicode.com/posts', {
-      method: 'POST',
-      body: JSON.stringify({
-        title: newTodo
-      }),
-      headers: {
-        'Content-type': 'application/json; charset=UTF-8',
-      },
-    })
-      .then((response) => response.json())
-      .then((json) => {
-        json.id = idGen;
-        json.completed = false;
-        setIdGen(idGen + 1);
+    if (newTodo) {
+      setLoading(true);
+      fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: JSON.stringify({
+          title: newTodo
+        }),
+        headers: {
+          'Content-type': 'application/json; charset=UTF-8',
+        },
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          json.id = idGen;
+          json.completed = false;
+          setIdGen(idGen + 1);
 
-        const newToDoList = [...todoList];
-        newToDoList.push(json);
-        setTodoList(newToDoList);
-        setNewToDo('');
-        setLoading(false);
-      });
+          const newToDoList = [...todoList];
+          newToDoList.push(json);
+          setTodoList(newToDoList);
+          setNewToDo('');
+          setLoading(false);
+        });
+    }
   }
 
   // Edit the title of todo item 
